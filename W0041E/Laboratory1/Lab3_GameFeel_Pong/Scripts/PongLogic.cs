@@ -3,28 +3,28 @@ using System;
 
 public partial class PongLogic : Node
 {
-    [Export]
-    public Node3D leftPaddle;
+    [Export] public Node3D polish;
+    bool isPolishOn = true;
 
-    [Export]
-    public Node3D rightPaddle;
+    [Export] public Node3D original;
+    bool isOriginalOn = false;
 
-    [Export]
-    public Node3D ball;
+    [Export] public Node3D leftPaddle;
 
-    [Export]
-    public Vector2 tableSize;
+    [Export] public Node3D rightPaddle;
+
+    [Export] public Node3D ball;
+
+    [Export] public Vector2 tableSize;
 
     private Vector3 ballVelocity = Vector3.Zero;
 
-    [Export]
-    private float ballSpeed = 5.0f; 
+    [Export] private float ballSpeed = 5.0f; 
 
-    [Export]
-    private float paddleSpeed = 10.0f; 
+    [Export] private float paddleSpeed = 10.0f; 
 
-    [Export]
-    public float paddleLerpSpeed = 20;
+    [Export] public float paddleLerpSpeed = 20;
+
 
     private Random random = new Random();
 
@@ -50,6 +50,7 @@ public partial class PongLogic : Node
         BallMovement((float)delta);
         CheckPaddleCollision();
         CheckForScore();
+        TogglePolish();
     }
 
     // Ball movement with speed adjustments
@@ -172,4 +173,15 @@ private void CheckPaddleCollision()
         }
     }
 
+    private void TogglePolish()
+    {
+        if (Input.IsActionJustPressed("polish"))
+        {
+            isPolishOn = !isPolishOn;
+            polish.Visible = isPolishOn;
+
+            isOriginalOn = !isOriginalOn;
+            original.Visible = isOriginalOn;
+        }
+    }
 }
