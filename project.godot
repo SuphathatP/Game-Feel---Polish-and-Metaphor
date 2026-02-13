@@ -96,3 +96,8 @@ polish={
 [layer_names]
 
 3d_render/layer_20="water"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

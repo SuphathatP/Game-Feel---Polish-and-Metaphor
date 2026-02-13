@@ -204,7 +204,7 @@ void fragment() {
 // LinearSceneDepth:21
 	{
 		float __log_depth = textureLod(depth_tex_frg_21, SCREEN_UV, 0.0).x;
-	vec4 __depth_view = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, __log_depth, 1.0);
+	vec4 __depth_view = INV_PROJECTION_MATRIX * vec4(vec3(SCREEN_UV, __log_depth) * 2.0 - 1.0, 1.0);
 		__depth_view.xyz /= __depth_view.w;
 		n_out21p0 = -__depth_view.z;
 	}
@@ -284,7 +284,7 @@ nodes/fragment/10/position = Vector2(-640, 220)
 nodes/fragment/11/node = SubResource("VisualShaderNodeMix_mhput")
 nodes/fragment/11/position = Vector2(480, 120)
 nodes/fragment/12/node = SubResource("VisualShaderNodeExpression_go6ns")
-nodes/fragment/12/position = Vector2(-960, -440)
+nodes/fragment/12/position = Vector2(-980, -500)
 nodes/fragment/12/size = Vector2(820, 500.00003)
 nodes/fragment/12/input_ports = "0,8,sim;"
 nodes/fragment/12/output_ports = "0,4,normal;"
@@ -302,7 +302,7 @@ nodes/fragment/14/position = Vector2(20, -920)
 nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_3rlhy")
 nodes/fragment/15/position = Vector2(540, -560)
 nodes/fragment/16/node = SubResource("VisualShaderNodeInput_6hhsi")
-nodes/fragment/16/position = Vector2(20, -440)
+nodes/fragment/16/position = Vector2(20, -600)
 nodes/fragment/17/node = SubResource("VisualShaderNodeTexture_2eja0")
 nodes/fragment/17/position = Vector2(1080, -620)
 nodes/fragment/18/node = SubResource("VisualShaderNodeMix_4ytv7")
@@ -313,4 +313,4 @@ nodes/fragment/20/node = SubResource("VisualShaderNodeTexture2DParameter_75g8n")
 nodes/fragment/20/position = Vector2(-1600, -360)
 nodes/fragment/21/node = SubResource("VisualShaderNodeLinearSceneDepth_27hr3")
 nodes/fragment/21/position = Vector2(-1120, 900)
-nodes/fragment/connections = PackedInt32Array(7, 0, 6, 0, 6, 0, 8, 0, 9, 0, 11, 0, 10, 0, 11, 1, 12, 0, 0, 8, 13, 0, 14, 0, 12, 0, 14, 1, 14, 0, 15, 0, 16, 0, 15, 1, 15, 0, 17, 0, 17, 0, 18, 0, 11, 0, 18, 1, 19, 0, 18, 2, 20, 0, 12, 0, 21, 0, 6, 1, 6, 0, 11, 2, 18, 0, 0, 0, 8, 0, 0, 1)
+nodes/fragment/connections = PackedInt32Array(7, 0, 6, 0, 6, 0, 8, 0, 9, 0, 11, 0, 10, 0, 11, 1, 13, 0, 14, 0, 12, 0, 14, 1, 14, 0, 15, 0, 16, 0, 15, 1, 15, 0, 17, 0, 17, 0, 18, 0, 19, 0, 18, 2, 20, 0, 12, 0, 21, 0, 6, 1, 6, 0, 11, 2, 12, 0, 0, 8, 8, 0, 0, 1, 18, 0, 0, 0, 11, 0, 18, 1)

@@ -12,7 +12,7 @@ public partial class Water : Node
         var simTex = GetNode<SubViewport>("Simulation").GetTexture();
         var colTex = GetNode<SubViewport>("Collision").GetTexture();
 
-        // Set shader params on the ColorRect material
+        // // Set shader params on the ColorRect material
         var crMat = cr.Material as ShaderMaterial;
         if (crMat != null)
         {

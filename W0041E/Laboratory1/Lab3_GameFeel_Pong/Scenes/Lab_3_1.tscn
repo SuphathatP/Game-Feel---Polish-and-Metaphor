@@ -48,7 +48,7 @@ environment = SubResource("Environment_2c6hd")
 [node name="Level" type="Node3D" parent="Original"]
 
 [node name="Background" type="MeshInstance3D" parent="Original/Level"]
-transform = Transform3D(3.6749, 0, 0, 0, -8.74228e-08, 2.671, 0, -2, -1.16753e-07, 0, 0, 0)
+transform = Transform3D(3.6749, 0, 0, 0, -8.742278e-08, 2.671, 0, -2, -1.1675312e-07, 0, 0, 0)
 visible = false
 material_override = ExtResource("1_y0gck")
 mesh = SubResource("QuadMesh_5lwcm")
@@ -123,10 +123,8 @@ transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.099, 0, 0, 0.149648)
 mesh = SubResource("BoxMesh_ia4oc")
 skeleton = NodePath("../..")
 
-[node name="PaddleController" type="Node3D" parent="Original" node_paths=PackedStringArray("polish", "original", "leftPaddle", "rightPaddle", "ball")]
+[node name="PaddleController" type="Node3D" parent="Original" node_paths=PackedStringArray("leftPaddle", "rightPaddle", "ball")]
 script = ExtResource("2_0f0sq")
-polish = NodePath("../../BeautyStuff")
-original = NodePath("..")
 leftPaddle = NodePath("LeftPaddle")
 rightPaddle = NodePath("RightPaddle")
 ball = NodePath("../Ball")
@@ -171,7 +169,7 @@ mesh = SubResource("SphereMesh_85um5")
 [node name="BeautyStuff" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.8506735, 0.5256944, 0, -0.5256944, 0.8506735, 0, 1.5953571, 2.362255)
+transform = Transform3D(1, 0, 0, 0, 0.66582954, 0.7461039, 0, -0.7461039, 0.66582954, 0, 1.5953571, 1.5915331)
 cull_mask = 524287
 
 [node name="Water" parent="." instance=ExtResource("3_yvltx")]

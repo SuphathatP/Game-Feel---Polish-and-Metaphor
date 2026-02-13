@@ -14,17 +14,17 @@ resource_local_to_scene = true
 shader = ExtResource("2_dfset")
 shader_parameter/Texture2DParameter = SubResource("ViewportTexture_fn5i0")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2psol"]
-viewport_path = NodePath("Collision")
+[sub_resource type="ViewportTexture" id="ViewportTexture_l66fi"]
+viewport_path = NodePath("Simulation")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_iyhgh"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_yds3k"]
 viewport_path = NodePath("SimulationBuffer")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cg4ft"]
 resource_local_to_scene = true
 shader = ExtResource("1_wj5qs")
-shader_parameter/sim_tex = SubResource("ViewportTexture_iyhgh")
-shader_parameter/col_tex = SubResource("ViewportTexture_2psol")
+shader_parameter/sim_tex = SubResource("ViewportTexture_yds3k")
+shader_parameter/col_tex = SubResource("ViewportTexture_l66fi")
 shader_parameter/phase = 0.18
 shader_parameter/attenuation = 0.995
 shader_parameter/deltaUV = 2.3
@@ -184,7 +184,7 @@ operation = 2
 size = Vector3(10, 8, 10)
 
 [node name="PoolFloor" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.76016, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 mesh = SubResource("PlaneMesh_psqb2")
 
 [node name="Water" type="MeshInstance3D" parent="."]
