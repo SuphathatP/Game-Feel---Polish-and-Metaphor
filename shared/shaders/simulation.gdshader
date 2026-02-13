@@ -32,6 +32,5 @@ void fragment() {
 		p -= prevCol * 0.5;
 	}
 		
-	COLOR = vec4(p, c.r, 1, 1);
-	
+	COLOR = vec4(p, c.r, col, 1);
 }
