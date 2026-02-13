@@ -1,10 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://cdbpaiqms1wpo"]
+[gd_scene load_steps=17 format=3 uid="uid://cdbpaiqms1wpo"]
 
 [ext_resource type="Script" uid="uid://hy5q0dv7wlel" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Scripts/Water.cs" id="1_l66fi"]
 [ext_resource type="Shader" uid="uid://ble0dh7pvottq" path="res://shared/shaders/simulation.gdshader" id="1_wj5qs"]
 [ext_resource type="Shader" uid="uid://c7d7kiigmb7le" path="res://shared/shaders/water.tres" id="2_7fen6"]
 [ext_resource type="Shader" uid="uid://v3wvmylpqv6y" path="res://shared/shaders/buffer.tres" id="2_dfset"]
-[ext_resource type="Material" uid="uid://b13ap22ai1ii5" path="res://shared/materials/Mat_White.tres" id="4_l66fi"]
+[ext_resource type="Material" uid="uid://b13ap22ai1ii5" path="res://shared/materials/Mat_Base_Water.tres" id="4_l66fi"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_fn5i0"]
 viewport_path = NodePath("Simulation")
@@ -32,56 +32,9 @@ shader_parameter/deltaUV = 2.3
 [sub_resource type="Environment" id="Environment_38vk1"]
 background_mode = 1
 
-[sub_resource type="SphereMesh" id="SphereMesh_uny4g"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3j18g"]
-shading_mode = 0
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_hyi7f"]
-material = SubResource("StandardMaterial3D_3j18g")
-
-[sub_resource type="Animation" id="Animation_55jk1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1.5, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_6tw82"]
-resource_name = "dip"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5, 0), Vector3(0, -0.143525, 0), Vector3(0, 1.5, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_oo1wg"]
-_data = {
-&"RESET": SubResource("Animation_55jk1"),
-&"dip": SubResource("Animation_6tw82")
-}
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_psqb2"]
 material = ExtResource("4_l66fi")
-size = Vector2(10.1, 10.1)
+size = Vector2(50, 50)
 subdivide_width = 500
 subdivide_depth = 500
 
@@ -155,27 +108,9 @@ size = 10.1
 near = 0.001
 far = 5.0
 
-[node name="Ball" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-visible = false
-
-[node name="Mesh" type="MeshInstance3D" parent="Ball"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-mesh = SubResource("SphereMesh_uny4g")
-
-[node name="WaterCollision" type="MeshInstance3D" parent="Ball"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-layers = 524288
-mesh = SubResource("SphereMesh_hyi7f")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Ball"]
-libraries = {
-&"": SubResource("AnimationLibrary_oo1wg")
-}
-autoplay = "dip"
-
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6945, 0)
+visible = false
 size = Vector3(12, 5, 12)
 material = ExtResource("4_l66fi")
 

@@ -6,6 +6,11 @@ public partial class PongLogic : Node
     [Export] public Node3D polish;
     bool isPolishOn = true;
 
+    [Export] public Node3D leftPaddleHD;
+    [Export] public Node3D rightPaddleHD;
+    [Export] public MeshInstance3D leftPaddleOld;
+    [Export] public MeshInstance3D rightPaddleOld;
+
     [Export] public Node3D original;
     bool isOriginalOn = false;
 
@@ -177,11 +182,17 @@ private void CheckPaddleCollision()
     {
         if (Input.IsActionJustPressed("polish"))
         {
+            // Polish Check
             isPolishOn = !isPolishOn;
             polish.Visible = isPolishOn;
+            leftPaddleHD.Visible = isPolishOn;
+            rightPaddleHD.Visible = isPolishOn;
 
+            // Original Check
             isOriginalOn = !isOriginalOn;
             original.Visible = isOriginalOn;
+            leftPaddleOld.Visible = isOriginalOn;
+            rightPaddleOld.Visible = isOriginalOn;
         }
     }
 }

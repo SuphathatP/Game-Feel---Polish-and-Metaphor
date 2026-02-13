@@ -1,31 +1,52 @@
 [gd_scene load_steps=5 format=3 uid="uid://6hhmstyjjcuo"]
 
-[ext_resource type="PackedScene" uid="uid://d378fsq71bvb1" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/Simple Boat.glb" id="1_800mo"]
-[ext_resource type="Material" uid="uid://wi1sebjnq2l8" path="res://shared/materials/water_collision_red.tres" id="2_p37hw"]
+[ext_resource type="PackedScene" uid="uid://bjodqyivmmaxj" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/simple_boat.tscn" id="1_p37hw"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_p37hw"]
-material = ExtResource("2_p37hw")
+[sub_resource type="Animation" id="Animation_800mo"]
+resource_name = "boat_animation"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Simple Boat:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.4, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.06981317, 0, 0), Vector3(-0.06981317, 0, 0), Vector3(0, 0, 0)]
+}
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_p37hw"]
-material = ExtResource("2_p37hw")
+[sub_resource type="Animation" id="Animation_p37hw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Simple Boat:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_31ncj"]
+_data = {
+&"RESET": SubResource("Animation_p37hw"),
+&"boat_animation": SubResource("Animation_800mo")
+}
 
 [node name="Boat" type="Node3D"]
 
-[node name="Simple Boat" parent="." instance=ExtResource("1_800mo")]
+[node name="Simple Boat" parent="." instance=ExtResource("1_p37hw")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 
-[node name="BoatWater" type="Node3D" parent="."]
-
-[node name="HandleLeft" type="MeshInstance3D" parent="BoatWater"]
-transform = Transform3D(0.04, 0, 0, 0, 0.11802226, 0.1506087, 0, -0.07530435, 0.23604453, 0, -0.5860142, -1.6593333)
-layers = 524288
-mesh = SubResource("BoxMesh_p37hw")
-
-[node name="HandleRight" type="MeshInstance3D" parent="BoatWater"]
-transform = Transform3D(-0.04, 6.5761117e-09, -2.0644853e-08, 0, 0.1180748, 0.1504439, 3.496911e-09, 0.07522195, -0.2361496, 0, -0.5860142, 1.6572635)
-layers = 524288
-mesh = SubResource("BoxMesh_p37hw")
-
-[node name="BoatBottom" type="MeshInstance3D" parent="BoatWater"]
-transform = Transform3D(-2.6226834e-08, -1, 0, 0.6, -4.371139e-08, 0, 0, 0, 0.8, 0, -0.34959674, 0)
-layers = 524288
-mesh = SubResource("CylinderMesh_p37hw")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_31ncj")
+}
+autoplay = "boat_animation"

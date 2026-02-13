@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjodqyivmmaxj"]
+
+[ext_resource type="PackedScene" uid="uid://n2dojt1mo2n3" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/Simple Boat.glb" id="1_dmsf3"]
+[ext_resource type="Material" uid="uid://wi1sebjnq2l8" path="res://shared/materials/water_collision_red.tres" id="2_keu88"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jemyb"]
+material = ExtResource("2_keu88")
+
+[sub_resource type="BoxMesh" id="BoxMesh_he1pp"]
+material = ExtResource("2_keu88")
+
+[sub_resource type="Animation" id="Animation_dmsf3"]
+resource_name = "boat_move_anim"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoatHandleLeft:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-2.129127, 0, 0), Vector3(-1.2217305, 0.31415927, 0.02094395), Vector3(-2.129127, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BoatHandleRight:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.0124058, 1.445801e-07, 3.1415925), Vector3(-1.9198622, -0.31415927, 3.1625366), Vector3(-1.0124058, 1.4901161e-07, 3.1415925)]
+}
+
+[sub_resource type="Animation" id="Animation_keu88"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoatHandleLeft:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.129127, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BoatHandleRight:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.0124058, 1.445801e-07, 3.1415925)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_he1pp"]
+_data = {
+&"RESET": SubResource("Animation_keu88"),
+&"boat_move_anim": SubResource("Animation_dmsf3")
+}
+
+[node name="Simple Boat" instance=ExtResource("1_dmsf3")]
+
+[node name="BoatWater" type="Node3D" parent="." index="0"]
+
+[node name="BoatBottom" type="MeshInstance3D" parent="BoatWater" index="0"]
+transform = Transform3D(-2.6226834e-08, -1, 0, 0.6, -4.371139e-08, 0, 0, 0, 0.8, 0, -0.34959674, 0)
+layers = 524288
+mesh = SubResource("CylinderMesh_jemyb")
+
+[node name="BoatHandleLeft" parent="." index="3"]
+transform = Transform3D(0.01784868, 0, 0, 0, -0.40781072, 0.015138193, 0, -0.6528873, -0.009455716, -0.0012996142, 0.070431635, -0.6208112)
+
+[node name="HandleLeft" type="MeshInstance3D" parent="BoatHandleLeft" index="0"]
+transform = Transform3D(2.2410622, 0, 0, 0, 0.0017458051, -0.3637204, 0, 7.843354, 0.15058756, 0.07281291, 1.5959991, -0.368618)
+layers = 524288
+mesh = SubResource("BoxMesh_he1pp")
+skeleton = NodePath("../../BoatWater")
+
+[node name="BoatHandleRight" parent="." index="4"]
+transform = Transform3D(-0.017848678, -2.1843558e-08, 1.3672393e-09, 1.4279101e-09, -0.40784982, 0.015137625, 2.9484604e-10, 0.6528629, 0.009456622, 0.001635775, 0.064532585, 0.622793)
+
+[node name="HandleRight" type="MeshInstance3D" parent="BoatHandleRight" index="0"]
+transform = Transform3D(2.2410622, 2.3041389e-07, 1.6124156e-06, 5.3271996e-09, 0.0016079694, -0.36372295, -6.786654e-08, 7.8434105, 0.1386981, 0.09164488, 1.5874758, -0.20446205)
+layers = 524288
+mesh = SubResource("BoxMesh_he1pp")
+skeleton = NodePath("../../BoatWater")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
+libraries = {
+&"": SubResource("AnimationLibrary_he1pp")
+}
+autoplay = "boat_move_anim"
