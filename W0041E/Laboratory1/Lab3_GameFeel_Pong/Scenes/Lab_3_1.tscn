@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bxsjqwurlq4a8"]
+[gd_scene load_steps=17 format=3 uid="uid://bxsjqwurlq4a8"]
 
 [ext_resource type="Material" uid="uid://c3b0ilgfnsvyi" path="res://shared/materials/Mat_Black.tres" id="1_y0gck"]
 [ext_resource type="Script" uid="uid://vspf4tlaj8t6" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Scripts/PongLogic.cs" id="2_0f0sq"]
 [ext_resource type="Material" uid="uid://wi1sebjnq2l8" path="res://shared/materials/water_collision_red.tres" id="3_85um5"]
 [ext_resource type="PackedScene" uid="uid://cdbpaiqms1wpo" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/watersim.tscn" id="3_yvltx"]
+[ext_resource type="PackedScene" uid="uid://6hhmstyjjcuo" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/boat.tscn" id="5_2c6hd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yvltx"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -43,6 +44,9 @@ material = ExtResource("3_85um5")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2c6hd")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.18516201, -0.9819655, -0.03819416, -0.14265202, -0.011596348, 0.989705, -0.97229904, 0.18870422, -0.13793217, -0.0830178, 0.998127, -1.38534)
+
 [node name="Original" type="Node3D" parent="."]
 
 [node name="Level" type="Node3D" parent="Original"]
@@ -52,9 +56,6 @@ transform = Transform3D(3.6749, 0, 0, 0, -8.74228e-08, 2.671, 0, -2, -1.16753e-0
 visible = false
 material_override = ExtResource("1_y0gck")
 mesh = SubResource("QuadMesh_5lwcm")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Original/Level"]
-transform = Transform3D(-0.185162, -0.981966, -0.0381943, -0.142652, -0.0115964, 0.989705, -0.972299, 0.188704, -0.137932, -0.0830178, 0.998127, -1.38534)
 
 [node name="Centerline" type="Node3D" parent="Original/Level"]
 
@@ -139,24 +140,40 @@ transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.5, -1.5, 0, 0)
 
 [node name="LeftPaddleMesh" type="MeshInstance3D" parent="Original/PaddleController/LeftPaddle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_xpm5r")
 
 [node name="LeftPaddleWater" type="MeshInstance3D" parent="Original/PaddleController/LeftPaddle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0, 0)
+visible = false
 layers = 524288
 mesh = SubResource("BoxMesh_85um5")
+
+[node name="LeftPaddle" type="Node3D" parent="Original/PaddleController/LeftPaddle"]
+transform = Transform3D(-6.244484e-07, 0, 14.285714, 0, 14.285714, 0, -2, 0, -8.742278e-08, 0, 0, 0)
+
+[node name="BoatLeft" parent="Original/PaddleController/LeftPaddle/LeftPaddle" instance=ExtResource("5_2c6hd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="RightPaddle" type="Node3D" parent="Original/PaddleController"]
 transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.5, 1.5, 0, 0)
 
 [node name="RightPaddleMesh" type="MeshInstance3D" parent="Original/PaddleController/RightPaddle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_xpm5r")
 
 [node name="RightPaddleWater" type="MeshInstance3D" parent="Original/PaddleController/RightPaddle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0)
+visible = false
 layers = 524288
 mesh = SubResource("BoxMesh_2c6hd")
+
+[node name="RightPaddle" type="Node3D" parent="Original/PaddleController/RightPaddle"]
+transform = Transform3D(-6.244484e-07, 0, 14.285714, 0, 14.285714, 0, -2, 0, -8.742278e-08, 0, 0, 0)
+
+[node name="BoatRight" parent="Original/PaddleController/RightPaddle/RightPaddle" instance=ExtResource("5_2c6hd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="Ball" type="MeshInstance3D" parent="Original"]
 transform = Transform3D(0.100372, 0, 0, 0, 0.100372, 0, 0, 0, 0.100372, 0, 0, 0)
@@ -167,11 +184,12 @@ skeleton = NodePath("../..")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 layers = 524288
 mesh = SubResource("SphereMesh_85um5")
+skeleton = NodePath("")
+
+[node name="Water" parent="." instance=ExtResource("3_yvltx")]
 
 [node name="BeautyStuff" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.8506735, 0.5256944, 0, -0.5256944, 0.8506735, 0, 1.5953571, 2.362255)
+transform = Transform3D(1, 0, 0, 0, 0.40990713, 0.9121273, 0, -0.9121273, 0.40990713, 0, 1.9129288, 0.9907675)
 cull_mask = 524287
-
-[node name="Water" parent="." instance=ExtResource("3_yvltx")]
