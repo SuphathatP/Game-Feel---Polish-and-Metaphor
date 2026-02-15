@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bxsjqwurlq4a8"]
+[gd_scene load_steps=14 format=3 uid="uid://bxsjqwurlq4a8"]
 
 [ext_resource type="Material" uid="uid://c3b0ilgfnsvyi" path="res://shared/materials/Mat_Black.tres" id="1_y0gck"]
 [ext_resource type="Script" uid="uid://vspf4tlaj8t6" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Scripts/PongLogic.cs" id="2_0f0sq"]
-[ext_resource type="Material" uid="uid://wi1sebjnq2l8" path="res://shared/materials/water_collision_red.tres" id="3_85um5"]
+[ext_resource type="PackedScene" uid="uid://dtmxbdwt4vsuh" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/simple_coconut.tscn" id="3_2c6hd"]
 [ext_resource type="PackedScene" uid="uid://cdbpaiqms1wpo" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/watersim.tscn" id="3_yvltx"]
 [ext_resource type="PackedScene" uid="uid://6hhmstyjjcuo" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/boat.tscn" id="5_2c6hd"]
 
@@ -26,9 +26,6 @@ material = SubResource("StandardMaterial3D_85um5")
 
 [sub_resource type="SphereMesh" id="SphereMesh_idfya"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_85um5"]
-material = ExtResource("3_85um5")
-
 [sub_resource type="QuadMesh" id="QuadMesh_5lwcm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ia4oc"]
@@ -43,17 +40,19 @@ transform = Transform3D(-0.18516201, -0.9819655, -0.03819416, -0.14265202, -0.01
 
 [node name="Level" type="Node3D" parent="."]
 
-[node name="PaddleController" type="Node3D" parent="Level" node_paths=PackedStringArray("polish", "leftPaddleHD", "rightPaddleHD", "leftPaddleOld", "rightPaddleOld", "original", "leftPaddle", "rightPaddle", "ball")]
+[node name="PaddleController" type="Node3D" parent="Level" node_paths=PackedStringArray("polish", "leftPaddleHD", "rightPaddleHD", "leftPaddleOld", "rightPaddleOld", "ballMesh", "coconut", "original", "leftPaddle", "rightPaddle", "ball")]
 script = ExtResource("2_0f0sq")
 polish = NodePath("../../BeautyStuff")
 leftPaddleHD = NodePath("LeftPaddle/LeftPaddle")
 rightPaddleHD = NodePath("RightPaddle/RightPaddle")
 leftPaddleOld = NodePath("LeftPaddle/LeftPaddleMesh")
 rightPaddleOld = NodePath("RightPaddle/RightPaddleMesh")
+ballMesh = NodePath("../Ball/BallMesh")
+coconut = NodePath("../Ball/Simple Coconut")
 original = NodePath("../Original")
 leftPaddle = NodePath("LeftPaddle")
 rightPaddle = NodePath("RightPaddle")
-ball = NodePath("../Ball")
+ball = NodePath("../Ball/Simple Coconut")
 tableSize = Vector2(3, 2)
 ballSpeed = 15.0
 paddleSpeed = 5.0
@@ -86,16 +85,16 @@ transform = Transform3D(-5.6425995e-07, 0, 14.285714, 0, 14.285714, 0, -2, 0, -4
 [node name="BoatRight" parent="Level/PaddleController/RightPaddle/RightPaddle" instance=ExtResource("5_2c6hd")]
 transform = Transform3D(-0.24999999, 0, -2.1855692e-08, 0, 0.25, 0, 2.1855692e-08, 0, -0.24999999, 0, 0, 0)
 
-[node name="Ball" type="MeshInstance3D" parent="Level"]
-transform = Transform3D(0.100372, 0, 0, 0, 0.100372, 0, 0, 0, 0.100372, 0, 0, 0)
-mesh = SubResource("SphereMesh_idfya")
-skeleton = NodePath("../..")
+[node name="Ball" type="Node3D" parent="Level"]
 
-[node name="BallWater" type="MeshInstance3D" parent="Level/Ball"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-layers = 524288
-mesh = SubResource("SphereMesh_85um5")
-skeleton = NodePath("")
+[node name="BallMesh" type="MeshInstance3D" parent="Level/Ball"]
+transform = Transform3D(0.100372, 0, 0, 0, 0.100372, 0, 0, 0, 0.100372, 0, 0, 0)
+visible = false
+mesh = SubResource("SphereMesh_idfya")
+skeleton = NodePath("../../..")
+
+[node name="Simple Coconut" parent="Level/Ball" instance=ExtResource("3_2c6hd")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
 
 [node name="Original" type="Node3D" parent="Level"]
 visible = false

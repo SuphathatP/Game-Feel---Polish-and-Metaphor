@@ -10,6 +10,8 @@ public partial class PongLogic : Node
     [Export] public Node3D rightPaddleHD;
     [Export] public MeshInstance3D leftPaddleOld;
     [Export] public MeshInstance3D rightPaddleOld;
+    [Export] public MeshInstance3D ballMesh;
+    [Export] public Node3D coconut;
 
     [Export] public Node3D original;
     bool isOriginalOn = false;
@@ -42,6 +44,7 @@ public partial class PongLogic : Node
 
     private float leftPaddleVerticalVelocity = 0;
     private float rightPaddleVerticalVelocity = 0;
+
 
     public override void _Ready()
     {
@@ -178,6 +181,7 @@ private void CheckPaddleCollision()
         }
     }
 
+
     private void TogglePolish()
     {
         if (Input.IsActionJustPressed("polish"))
@@ -187,12 +191,14 @@ private void CheckPaddleCollision()
             polish.Visible = isPolishOn;
             leftPaddleHD.Visible = isPolishOn;
             rightPaddleHD.Visible = isPolishOn;
+            coconut.Visible = isPolishOn;
 
             // Original Check
             isOriginalOn = !isOriginalOn;
             original.Visible = isOriginalOn;
             leftPaddleOld.Visible = isOriginalOn;
             rightPaddleOld.Visible = isOriginalOn;
+            ballMesh.Visible = isOriginalOn;
         }
     }
 }

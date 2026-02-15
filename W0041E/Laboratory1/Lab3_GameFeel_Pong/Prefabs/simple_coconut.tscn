@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtmxbdwt4vsuh"]
+
+[ext_resource type="PackedScene" uid="uid://ckicytxve5ae2" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/Simple Coconut.glb" id="1_wcimn"]
+[ext_resource type="Material" uid="uid://wi1sebjnq2l8" path="res://shared/materials/water_collision_red.tres" id="2_v80q2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_utaqu"]
+material = ExtResource("2_v80q2")
+
+[node name="Simple Coconut" instance=ExtResource("1_wcimn")]
+
+[node name="CoconutWater" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+layers = 524288
+mesh = SubResource("SphereMesh_utaqu")
