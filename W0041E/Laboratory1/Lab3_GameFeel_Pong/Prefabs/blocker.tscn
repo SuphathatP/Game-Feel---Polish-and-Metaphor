@@ -1,0 +1,395 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0dtytyfnuxfm"]
+
+[ext_resource type="Material" uid="uid://d147pd6ixwbl2" path="res://shared/materials/Mat_blocker.tres" id="1_t31x0"]
+[ext_resource type="Material" uid="uid://wi1sebjnq2l8" path="res://shared/materials/water_collision_red.tres" id="2_paifj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kkeqe"]
+material = ExtResource("1_t31x0")
+
+[sub_resource type="BoxMesh" id="BoxMesh_6tm8d"]
+material = ExtResource("2_paifj")
+
+[sub_resource type="Animation" id="Animation_paifj"]
+resource_name = "block_water_anim"
+length = 8.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("block_mesh11:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-2, 0, 1.7881393e-07), Vector3(-2, 0.1, 0), Vector3(-2, 0, 1.7881393e-07)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("block_mesh10:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 3.2, 7.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.6, -1.4901161e-07, 1.7881393e-07), Vector3(-1.6, -1.4901161e-07, 1.7881393e-07), Vector3(-1.6, 0.1, 0), Vector3(-1.6, -1.4901161e-07, 1.7881393e-07)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("block_mesh9:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 3.4, 7.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.2, -1.4901161e-07, 1.7881393e-07), Vector3(-1.2, -1.4901161e-07, 1.7881393e-07), Vector3(-1.2, 0.1, 0), Vector3(-1.2, -1.4901161e-07, 1.7881393e-07)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("block_mesh8:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6, 3.6, 7.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.8000001, -1.4901161e-07, 1.7881393e-07), Vector3(-0.8000001, -1.4901161e-07, 1.7881393e-07), Vector3(-0.8, 0.1, 0), Vector3(-0.8, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("block_mesh7:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8, 3.8, 7.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.4000001, -1.4901161e-07, 1.7881393e-07), Vector3(-0.4000001, -1.4901161e-07, 1.7881393e-07), Vector3(-0.4, 0.1, 0), Vector3(-0.4, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("block_mesh:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 4, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.4901161e-07, 1.7881393e-07), Vector3(0, -1.4901161e-07, 1.7881393e-07), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("block_mesh2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.2, 4.2, 7.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.39999998, -1.4901161e-07, 1.7881393e-07), Vector3(0.39999998, -1.4901161e-07, 1.7881393e-07), Vector3(0.4, 0.1, 0), Vector3(0.4, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("block_mesh3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.4, 4.4, 7.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.8000001, -1.4901161e-07, 1.7881393e-07), Vector3(0.8000001, -1.4901161e-07, 1.7881393e-07), Vector3(0.8, 0.1, 0), Vector3(0.8, 0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("block_mesh4:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.6, 4.6, 7.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.1999999, -1.4901161e-07, 1.7881393e-07), Vector3(1.1999999, -1.4901161e-07, 1.7881393e-07), Vector3(1.2, 0.1, 0), Vector3(1.2, 0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("block_mesh5:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1.8, 4.8, 7.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.6, -1.4901161e-07, 1.7881393e-07), Vector3(1.6, -1.4901161e-07, 1.7881393e-07), Vector3(1.6, 0.1, 0), Vector3(1.6, 0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("block_mesh6:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 2, 5, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(2, -1.4901161e-07, 1.7881393e-07), Vector3(2, -1.4901161e-07, 1.7881393e-07), Vector3(2, 0.1, 0), Vector3(2, -1.4901161e-07, 1.7881393e-07)]
+}
+
+[sub_resource type="Animation" id="Animation_6tm8d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("block_mesh11:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2, 0, 1.7881393e-07)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("block_mesh10:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.6, -1.4901161e-07, 1.7881393e-07)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("block_mesh9:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.2, -1.4901161e-07, 1.7881393e-07)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("block_mesh8:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.8000001, -1.4901161e-07, 1.7881393e-07)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("block_mesh7:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.4000001, -1.4901161e-07, 1.7881393e-07)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("block_mesh:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.4901161e-07, 1.7881393e-07)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("block_mesh2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.39999998, -1.4901161e-07, 1.7881393e-07)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("block_mesh3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.8000001, -1.4901161e-07, 1.7881393e-07)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("block_mesh4:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.1999999, -1.4901161e-07, 1.7881393e-07)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("block_mesh5:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.6, -1.4901161e-07, 1.7881393e-07)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("block_mesh6:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2, -1.4901161e-07, 1.7881393e-07)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6tm8d"]
+_data = {
+&"RESET": SubResource("Animation_6tm8d"),
+&"block_water_anim": SubResource("Animation_paifj")
+}
+
+[node name="Blocker" type="Node3D"]
+
+[node name="block_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.059999976, 0, 0, 0, 0.059999976, 0, -1.4901161e-07, 1.7881393e-07)
+mesh = SubResource("BoxMesh_kkeqe")
+
+[node name="block_water_mesh" type="MeshInstance3D" parent="block_mesh"]
+layers = 524288
+mesh = SubResource("BoxMesh_6tm8d")
+skeleton = NodePath("")
+
+[node name="block_mesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.059999976, 0, 0, 0, 0.059999976, 0.39999998, -1.4901161e-07, 1.7881393e-07)
+mesh = SubResource("BoxMesh_kkeqe")
+
+[node name="block_water_mesh2" type="MeshInstance3D" parent="block_mesh2"]
+layers = 524288
+mesh = SubResource("BoxMesh_6tm8d")
+skeleton = NodePath("")
+
+[node name="block_mesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.059999976, 0, 0, 0, 0.059999976, 0.8000001, -1.4901161e-07, 1.7881393e-07)
+mesh = SubResource("BoxMesh_kkeqe")
+
+[node name="block_water_mesh3" type="MeshInstance3D" parent="block_mesh3"]
+layers = 524288
+mesh = SubResource("BoxMesh_6tm8d")
+skeleton = NodePath("")
+
+[node name="block_mesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.059999976, 0, 0, 0, 0.059999976, 1.1999999, -1.4901161e-07, 1.7881393e-07)
+mesh = SubResource("BoxMesh_kkeqe")
+
+[node name="block_water_mesh4" type="MeshInstance3D" parent="block_mesh4"]
+layers = 524288
+mesh = SubResource("BoxMesh_6tm8d")
+skeleton = NodePath("")
+
+[node name="block_mesh5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.059999976, 0, 0, 0, 0.059999976, 1.6, -1.4901161e-07, 1.7881393e-07)
+mesh = SubResource("BoxMesh_kkeqe")
+
+[node name="block_water_mesh5" type="MeshInstance3D" parent="block_mesh5"]
+layers = 524288
+mesh = SubResource("BoxMesh_6tm8d")
+skeleton = NodePath("")
+
+[node name="block_mesh6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.059999976, 0, 0, 0, 0.059999976, 2, -1.4901161e-07, 1.7881393e-07)
+mesh = SubResource("BoxMesh_kkeqe")
+
+[node name="block_water_mesh6" type="MeshInstance3D" parent="block_mesh6"]
+layers = 524288
+mesh = SubResource("BoxMesh_6tm8d")
+skeleton = NodePath("")
+
+[node name="block_mesh7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.059999976, 0, 0, 0, 0.059999976, -0.4000001, -1.4901161e-07, 1.7881393e-07)
+mesh = SubResource("BoxMesh_kkeqe")
+
+[node name="block_water_mesh7" type="MeshInstance3D" parent="block_mesh7"]
+layers = 524288
+mesh = SubResource("BoxMesh_6tm8d")
+skeleton = NodePath("")
+
+[node name="block_mesh8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.059999976, 0, 0, 0, 0.059999976, -0.8000001, -1.4901161e-07, 1.7881393e-07)
+mesh = SubResource("BoxMesh_kkeqe")
+
+[node name="block_water_mesh8" type="MeshInstance3D" parent="block_mesh8"]
+layers = 524288
+mesh = SubResource("BoxMesh_6tm8d")
+skeleton = NodePath("")
+
+[node name="block_mesh9" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.059999976, 0, 0, 0, 0.059999976, -1.2, -1.4901161e-07, 1.7881393e-07)
+mesh = SubResource("BoxMesh_kkeqe")
+
+[node name="block_water_mesh9" type="MeshInstance3D" parent="block_mesh9"]
+layers = 524288
+mesh = SubResource("BoxMesh_6tm8d")
+skeleton = NodePath("")
+
+[node name="block_mesh10" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.059999976, 0, 0, 0, 0.059999976, -1.6, -1.4901161e-07, 1.7881393e-07)
+mesh = SubResource("BoxMesh_kkeqe")
+
+[node name="block_water_mesh10" type="MeshInstance3D" parent="block_mesh10"]
+layers = 524288
+mesh = SubResource("BoxMesh_6tm8d")
+skeleton = NodePath("")
+
+[node name="block_mesh11" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.059999976, 0, 0, 0, 0.059999976, -2, 0, 1.7881393e-07)
+mesh = SubResource("BoxMesh_kkeqe")
+
+[node name="block_water_mesh11" type="MeshInstance3D" parent="block_mesh11"]
+layers = 524288
+mesh = SubResource("BoxMesh_6tm8d")
+skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6tm8d")
+}
+autoplay = "block_water_anim"

@@ -41,6 +41,7 @@ _data = {
 }
 
 [node name="Boat" type="Node3D"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
 [node name="Simple Boat" parent="." instance=ExtResource("1_p37hw")]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
