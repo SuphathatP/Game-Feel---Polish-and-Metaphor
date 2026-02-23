@@ -87,6 +87,15 @@ public partial class PongLogic : Node
         {
             ballVelocity.Z *= -1;
         }
+
+        if (ballVelocity.X > 0)
+        {
+            coconut.RotationDegrees = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            coconut.RotationDegrees = new Vector3(0, 180, 0);
+        }
     }
 
     // Paddle movement
@@ -163,6 +172,7 @@ private void CheckPaddleCollision()
             if (targetPaddle == leftPaddle)
             {
                 boatLeftAnim?.Play("boat_hit_anim");
+                //coconut.Rotation = new Vector3(Mathf.DegToRad(180), 0, 0);
                 
                 if (isPolishOn)
                 {
@@ -173,6 +183,7 @@ private void CheckPaddleCollision()
             else if (targetPaddle == rightPaddle)
             {
                 boatRightAnim?.Play("boat_hit_anim");
+                //coconut.Rotation = new Vector3(0, 0, 0);
                 
                 if (isPolishOn)
                 {
