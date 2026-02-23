@@ -1,6 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://6hhmstyjjcuo"]
+[gd_scene load_steps=9 format=3 uid="uid://6hhmstyjjcuo"]
 
 [ext_resource type="PackedScene" uid="uid://bjodqyivmmaxj" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/simple_boat.tscn" id="1_p37hw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_800mo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_800mo"]
+size = Vector3(0.2, 0.4, 0.6)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p37hw"]
+top_radius = 0.1
+bottom_radius = 0.8
+height = 0.4
 
 [sub_resource type="Animation" id="Animation_p37hw"]
 length = 0.001
@@ -34,17 +44,47 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0.06981317, 0, 0), Vector3(-0.06981317, 0, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_31ncj"]
+resource_name = "boat_hit_anim"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Simple Boat:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.5, 1, 1.6, 2.2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.34906584, 0, 0), Vector3(0, 0, 0), Vector3(0.34906584, 0, 0), Vector3(-0.34906584, 0, 0), Vector3(0.17453292, 0, 0), Vector3(-0.17453292, 0, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_31ncj"]
 _data = {
 &"RESET": SubResource("Animation_p37hw"),
-&"boat_animation": SubResource("Animation_800mo")
+&"boat_animation": SubResource("Animation_800mo"),
+&"boat_hit_anim": SubResource("Animation_31ncj")
 }
 
 [node name="Boat" type="Node3D"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
 [node name="Simple Boat" parent="." instance=ExtResource("1_p37hw")]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+
+[node name="Sailor" type="MeshInstance3D" parent="Simple Boat"]
+transform = Transform3D(0.74999994, 0, 0, 0, 0.74999994, 0, 0, 0, 0.74999994, 0, 0.12413801, 0)
+mesh = SubResource("CapsuleMesh_800mo")
+skeleton = NodePath("../..")
+
+[node name="SailorEyes" type="MeshInstance3D" parent="Simple Boat/Sailor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44196296, 0.3624674, 0)
+mesh = SubResource("BoxMesh_800mo")
+
+[node name="SailorHat" type="MeshInstance3D" parent="Simple Boat/Sailor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93672174, 0)
+mesh = SubResource("CylinderMesh_p37hw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

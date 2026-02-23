@@ -6,13 +6,16 @@ public partial class PongLogic : Node
     [Export] public Node3D polish;
     bool isPolishOn = true;
 
+    [ExportGroup("Node and Instance")]
     [Export] public Node3D leftPaddleHD;
     [Export] public Node3D rightPaddleHD;
     [Export] public MeshInstance3D leftPaddleOld;
     [Export] public MeshInstance3D rightPaddleOld;
     [Export] public MeshInstance3D ballMesh;
     [Export] public Node3D coconut;
+    [Export] public Camera3D cameraHD;
 
+    [ExportGroup("Original")]
     [Export] public Node3D original;
     bool isOriginalOn = false;
 
@@ -26,11 +29,13 @@ public partial class PongLogic : Node
 
     private Vector3 ballVelocity = Vector3.Zero;
 
+    [ExportGroup("Speed")]
     [Export] private float ballSpeed = 5.0f; 
 
     [Export] private float paddleSpeed = 10.0f; 
 
     [Export] public float paddleLerpSpeed = 20;
+    [Export] public float blendAnimSpeed = 0.25f;
 
 
     private Random random = new Random();
@@ -45,10 +50,21 @@ public partial class PongLogic : Node
     private float leftPaddleVerticalVelocity = 0;
     private float rightPaddleVerticalVelocity = 0;
 
+    private AnimationPlayer cameraHDAnim;
+    private AnimationPlayer boatLeftAnim;
+    private AnimationPlayer boatRightAnim;
 
     public override void _Ready()
     {
         InitMatch();
+
+        cameraHDAnim = cameraHD.GetNode<AnimationPlayer>("AnimationPlayer");
+
+        boatLeftAnim = leftPaddle.GetNode<AnimationPlayer>("LeftPaddleHD/BoatLeft/AnimationPlayer");
+        boatRightAnim = rightPaddle.GetNode<AnimationPlayer>("RightPaddleHD/BoatRight/AnimationPlayer");
+
+        boatLeftAnim.AnimationFinished += OnLeftBoatAnimFinished;
+        boatRightAnim.AnimationFinished += OnRightBoatAnimFinished;
     }
 
     public override void _Process(double delta)
@@ -143,6 +159,27 @@ private void CheckPaddleCollision()
         if (ball.GlobalPosition.Z >= paddleMinZ && ball.GlobalPosition.Z <= paddleMaxZ)
         {
             ballVelocity.X *= -1;
+
+            if (targetPaddle == leftPaddle)
+            {
+                boatLeftAnim?.Play("boat_hit_anim");
+                
+                if (isPolishOn)
+                {
+                    cameraHDAnim?.Play("camera_shake_anim");
+                }
+                
+            }
+            else if (targetPaddle == rightPaddle)
+            {
+                boatRightAnim?.Play("boat_hit_anim");
+                
+                if (isPolishOn)
+                {
+                    cameraHDAnim?.Play("camera_shake_anim");
+                }
+            }
+
             float distanceFromCenter = ball.GlobalPosition.Z - paddleCenterZ;
             float maxAngle = 75.0f;  
             float angle = Mathf.DegToRad(maxAngle * (distanceFromCenter / paddleHalfSizeZ));
@@ -201,4 +238,21 @@ private void CheckPaddleCollision()
             ballMesh.Visible = isOriginalOn;
         }
     }
+
+    private void OnLeftBoatAnimFinished(StringName animName)
+    {
+        if (animName == "boat_hit_anim")
+        {
+            boatLeftAnim.Play("boat_animation", customBlend: blendAnimSpeed);
+        }    
+    }
+
+    private void OnRightBoatAnimFinished(StringName animName)
+    {
+        if (animName == "boat_hit_anim")
+        {
+            boatRightAnim.Play("boat_animation", customBlend: blendAnimSpeed);
+        }   
+    }
+
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bxsjqwurlq4a8"]
+[gd_scene load_steps=18 format=3 uid="uid://bxsjqwurlq4a8"]
 
 [ext_resource type="Material" uid="uid://c3b0ilgfnsvyi" path="res://shared/materials/Mat_Black.tres" id="1_y0gck"]
 [ext_resource type="Script" uid="uid://vspf4tlaj8t6" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Scripts/PongLogic.cs" id="2_0f0sq"]
@@ -31,6 +31,43 @@ material = SubResource("StandardMaterial3D_85um5")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ia4oc"]
 
+[sub_resource type="Animation" id="Animation_rsk78"]
+resource_name = "camera_shake_anim"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 2, 0.8), Vector3(-0.02, 2, 0.8), Vector3(0.02, 2, 0.8), Vector3(0, 2, 0.8)]
+}
+
+[sub_resource type="Animation" id="Animation_8pk5x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2, 0.8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6mv62"]
+_data = {
+&"RESET": SubResource("Animation_8pk5x"),
+&"camera_shake_anim": SubResource("Animation_rsk78")
+}
+
 [node name="Lab31" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -42,15 +79,16 @@ transform = Transform3D(-0.18516201, -0.9819655, -0.03819416, -0.14265202, -0.01
 [node name="Level" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
-[node name="PaddleController" type="Node3D" parent="Level" node_paths=PackedStringArray("polish", "leftPaddleHD", "rightPaddleHD", "leftPaddleOld", "rightPaddleOld", "ballMesh", "coconut", "original", "leftPaddle", "rightPaddle", "ball")]
+[node name="PaddleController" type="Node3D" parent="Level" node_paths=PackedStringArray("polish", "leftPaddleHD", "rightPaddleHD", "leftPaddleOld", "rightPaddleOld", "ballMesh", "coconut", "cameraHD", "original", "leftPaddle", "rightPaddle", "ball")]
 script = ExtResource("2_0f0sq")
 polish = NodePath("../../BeautyStuff")
-leftPaddleHD = NodePath("LeftPaddle/LeftPaddle")
-rightPaddleHD = NodePath("RightPaddle/RightPaddle")
+leftPaddleHD = NodePath("LeftPaddle/LeftPaddleHD")
+rightPaddleHD = NodePath("RightPaddle/RightPaddleHD")
 leftPaddleOld = NodePath("LeftPaddle/LeftPaddleMesh")
 rightPaddleOld = NodePath("RightPaddle/RightPaddleMesh")
 ballMesh = NodePath("../Ball/BallMesh")
 coconut = NodePath("../Ball/Simple Coconut")
+cameraHD = NodePath("../../Camera3DHD")
 original = NodePath("../Original")
 leftPaddle = NodePath("LeftPaddle")
 rightPaddle = NodePath("RightPaddle")
@@ -67,10 +105,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0, 0)
 visible = false
 mesh = SubResource("BoxMesh_xpm5r")
 
-[node name="LeftPaddle" type="Node3D" parent="Level/PaddleController/LeftPaddle"]
-transform = Transform3D(-6.244484e-07, 0, 14.285714, 0, 14.285714, 0, -2, 0, -8.742278e-08, -2, -0.6, 0)
+[node name="LeftPaddleHD" type="Node3D" parent="Level/PaddleController/LeftPaddle"]
+transform = Transform3D(-6.244484e-07, 0, 14.285714, 0, 14.285714, 0, -2, 0, -8.742278e-08, -2, -1.1, 0)
 
-[node name="BoatLeft" parent="Level/PaddleController/LeftPaddle/LeftPaddle" instance=ExtResource("5_2c6hd")]
+[node name="BoatLeft" parent="Level/PaddleController/LeftPaddle/LeftPaddleHD" instance=ExtResource("5_2c6hd")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="RightPaddle" type="Node3D" parent="Level/PaddleController"]
@@ -81,10 +119,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0)
 visible = false
 mesh = SubResource("BoxMesh_xpm5r")
 
-[node name="RightPaddle" type="Node3D" parent="Level/PaddleController/RightPaddle"]
-transform = Transform3D(-5.6425995e-07, 0, 14.285714, 0, 14.285714, 0, -2, 0, -4.030428e-06, 2, -0.6, 0)
+[node name="RightPaddleHD" type="Node3D" parent="Level/PaddleController/RightPaddle"]
+transform = Transform3D(-5.6425995e-07, 0, 14.285714, 0, 14.285714, 0, -2, 0, -4.030428e-06, 2, -1.1, 0)
 
-[node name="BoatRight" parent="Level/PaddleController/RightPaddle/RightPaddle" instance=ExtResource("5_2c6hd")]
+[node name="BoatRight" parent="Level/PaddleController/RightPaddle/RightPaddleHD" instance=ExtResource("5_2c6hd")]
 transform = Transform3D(-0.24999999, 0, -2.1855692e-08, 0, 0.25, 0, 2.1855692e-08, 0, -0.24999999, 0, 0, 0)
 
 [node name="Ball" type="Node3D" parent="Level"]
@@ -184,6 +222,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2)
 [node name="Blocker2" parent="BeautyStuff" instance=ExtResource("6_rsk78")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 1.2)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.40990713, 0.9121273, 0, -0.9121273, 0.40990713, 0, 1.9129288, 0.9907675)
+[node name="Camera3DHD" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 2, 0.8)
 cull_mask = 524287
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3DHD"]
+libraries = {
+&"": SubResource("AnimationLibrary_6mv62")
+}
+
+[editable path="Level/PaddleController/LeftPaddle/LeftPaddleHD/BoatLeft"]
+[editable path="Level/PaddleController/RightPaddle/RightPaddleHD/BoatRight"]
