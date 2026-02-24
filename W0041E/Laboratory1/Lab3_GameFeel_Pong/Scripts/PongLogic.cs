@@ -13,7 +13,7 @@ public partial class PongLogic : Node
     [Export] public MeshInstance3D rightPaddleOld;
     [Export] public MeshInstance3D ballMesh;
     [Export] public Node3D coconut;
-    [Export] public Camera3D cameraHD;
+    [Export] public Camera3D camera;
 
     [ExportGroup("Original")]
     [Export] public Node3D original;
@@ -58,13 +58,14 @@ public partial class PongLogic : Node
     {
         InitMatch();
 
-        cameraHDAnim = cameraHD.GetNode<AnimationPlayer>("AnimationPlayer");
+        cameraHDAnim = camera.GetNode<AnimationPlayer>("AnimationPlayer");
 
         boatLeftAnim = leftPaddle.GetNode<AnimationPlayer>("LeftPaddleHD/BoatLeft/AnimationPlayer");
         boatRightAnim = rightPaddle.GetNode<AnimationPlayer>("RightPaddleHD/BoatRight/AnimationPlayer");
 
         boatLeftAnim.AnimationFinished += OnLeftBoatAnimFinished;
         boatRightAnim.AnimationFinished += OnRightBoatAnimFinished;
+
     }
 
     public override void _Process(double delta)
@@ -74,6 +75,7 @@ public partial class PongLogic : Node
         BallMovement((float)delta);
         CheckPaddleCollision();
         CheckForScore();
+        SetPolishGFXTransform();
         TogglePolish();
     }
 
@@ -88,15 +90,16 @@ public partial class PongLogic : Node
             ballVelocity.Z *= -1;
         }
 
-        if (ballVelocity.X > 0)
-        {
-            coconut.RotationDegrees = new Vector3(0, 0, 0);
-        }
-        else
-        {
-            coconut.RotationDegrees = new Vector3(0, 180, 0);
-        }
+
     }
+
+    public void SetPolishGFXTransform()
+    {
+        coconut.RotationDegrees = ballVelocity.X > 0 ? new Vector3(0, 0, 0) : new Vector3(0, 180, 0);
+    }
+
+
+
 
     // Paddle movement
     public void PaddleMovement(float delta)
@@ -172,7 +175,6 @@ private void CheckPaddleCollision()
             if (targetPaddle == leftPaddle)
             {
                 boatLeftAnim?.Play("boat_hit_anim");
-                //coconut.Rotation = new Vector3(Mathf.DegToRad(180), 0, 0);
                 
                 if (isPolishOn)
                 {
@@ -183,7 +185,6 @@ private void CheckPaddleCollision()
             else if (targetPaddle == rightPaddle)
             {
                 boatRightAnim?.Play("boat_hit_anim");
-                //coconut.Rotation = new Vector3(0, 0, 0);
                 
                 if (isPolishOn)
                 {
