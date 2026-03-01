@@ -52,8 +52,8 @@ shader_parameter/simulation2 = SubResource("ViewportTexture_ceg2r")
 shader_parameter/amplitude = 0.5
 shader_parameter/refraction_strength = 0.1
 shader_parameter/simulation = SubResource("ViewportTexture_m1c3a")
-shader_parameter/deep_water = Color(0, 0.168627, 0.643137, 0.945098)
-shader_parameter/shallow_water = Color(0, 0.34902, 0.34902, 0.67451)
+shader_parameter/deep_water = Color(0.23607534, 0.33166876, 0.103397585, 0.94509804)
+shader_parameter/shallow_water = Color(0.2834836, 0.3978092, 0.12798801, 0.94509804)
 shader_parameter/murkiness = 0.407
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ntba4"]
@@ -119,7 +119,7 @@ operation = 2
 size = Vector3(10, 8, 10)
 
 [node name="PoolFloor" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.76016, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 mesh = SubResource("PlaneMesh_psqb2")
 
 [node name="Water" type="MeshInstance3D" parent="."]

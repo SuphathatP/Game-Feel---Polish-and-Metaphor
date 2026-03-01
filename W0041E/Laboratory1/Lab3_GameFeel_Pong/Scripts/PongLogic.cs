@@ -50,14 +50,24 @@ public partial class PongLogic : Node
     private float leftPaddleVerticalVelocity = 0;
     private float rightPaddleVerticalVelocity = 0;
 
+    // Animantions
     private AnimationPlayer cameraHDAnim;
     private AnimationPlayer boatLeftAnim;
     private AnimationPlayer boatRightAnim;
+
+    // Audios
+    private AudioStreamPlayer3D leftBoatHitAudio;
+    private AudioStreamPlayer3D rightBoatHitAudio;
+    private AudioStreamPlayer3D environmentAudio;
+    private AudioStreamPlayer3D backgroundAudio;
+    private AudioStreamPlayer3D leftBoatMovingAudio;
+    private AudioStreamPlayer3D rightBoatMovingAudio;
 
     public override void _Ready()
     {
         InitMatch();
 
+        // Animations
         cameraHDAnim = camera.GetNode<AnimationPlayer>("AnimationPlayer");
 
         boatLeftAnim = leftPaddle.GetNode<AnimationPlayer>("LeftPaddleHD/BoatLeft/AnimationPlayer");
@@ -66,6 +76,15 @@ public partial class PongLogic : Node
         boatLeftAnim.AnimationFinished += OnLeftBoatAnimFinished;
         boatRightAnim.AnimationFinished += OnRightBoatAnimFinished;
 
+        // Audios
+        leftBoatHitAudio = leftPaddle.GetNode<AudioStreamPlayer3D>("LeftPaddleHD/BoatLeft/BoatHitAudio");
+        rightBoatHitAudio = rightPaddle.GetNode<AudioStreamPlayer3D>("RightPaddleHD/BoatRight/BoatHitAudio");
+        
+        environmentAudio = polish.GetNode<AudioStreamPlayer3D>("EnvironmentAudio");
+        backgroundAudio = polish.GetNode<AudioStreamPlayer3D>("BackGroundAudio");
+
+        leftBoatMovingAudio = leftPaddle.GetNode<AudioStreamPlayer3D>("LeftPaddleHD/BoatLeft/BoatMovingAudio");
+        rightBoatMovingAudio = rightPaddle.GetNode<AudioStreamPlayer3D>("RightPaddleHD/BoatRight/BoatMovingAudio");
     }
 
     public override void _Process(double delta)
@@ -115,6 +134,44 @@ public partial class PongLogic : Node
         rightPaddlePosition.Z = Mathf.Clamp(rightPaddlePosition.Z, (-tableSize.Y + rightPaddle.Scale.Z) / 2, (tableSize.Y - rightPaddle.Scale.Z) / 2);
         rightPaddleVerticalVelocity = (rightPaddlePosition - rightPaddle.Position).Length();
         rightPaddle.Position = rightPaddlePosition;
+
+        // LEFT PADDLE SOUND
+        if (leftPaddleVerticalVelocity > 0.001f && isPolishOn)
+        {
+            if (!leftBoatMovingAudio.Playing)
+                leftBoatMovingAudio.Play();
+            
+            leftBoatMovingAudio.VolumeDb = Mathf.Lerp(-12, 0, leftPaddleVerticalVelocity * 5f);
+            leftBoatMovingAudio.PitchScale = 1f + leftPaddleVerticalVelocity * 0.5f;
+        }
+        else
+        {
+            if (leftBoatMovingAudio.Playing)
+            {
+                var tween = GetTree().CreateTween();
+                tween.TweenProperty(leftBoatMovingAudio, "volume_db", -40, 0.15f);
+                tween.TweenCallback(Callable.From(() => leftBoatMovingAudio.Stop()));
+            }
+        }
+
+        // RIGHT PADDLE SOUND
+        if (rightPaddleVerticalVelocity > 0.001f && isPolishOn)
+        {
+            if (!rightBoatMovingAudio.Playing)
+                rightBoatMovingAudio.Play();
+
+            rightBoatMovingAudio.VolumeDb = Mathf.Lerp(-12, 0, rightPaddleVerticalVelocity * 5f);
+            rightBoatMovingAudio.PitchScale = 1f + rightPaddleVerticalVelocity * 0.5f;
+        }
+        else
+        {
+            if (rightBoatMovingAudio.Playing)
+            {
+                var tween = GetTree().CreateTween();
+                tween.TweenProperty(rightBoatMovingAudio, "volume_db", -40, 0.15f);
+                tween.TweenCallback(Callable.From(() => rightBoatMovingAudio.Stop()));
+            }
+        } 
     }
 
     // Initialize match and set ball starting velocity
@@ -179,6 +236,7 @@ private void CheckPaddleCollision()
                 if (isPolishOn)
                 {
                     cameraHDAnim?.Play("camera_shake_anim");
+                    leftBoatHitAudio?.Play();
                 }
                 
             }
@@ -189,6 +247,7 @@ private void CheckPaddleCollision()
                 if (isPolishOn)
                 {
                     cameraHDAnim?.Play("camera_shake_anim");
+                    rightBoatHitAudio?.Play();
                 }
             }
 
@@ -248,6 +307,32 @@ private void CheckPaddleCollision()
             leftPaddleOld.Visible = isOriginalOn;
             rightPaddleOld.Visible = isOriginalOn;
             ballMesh.Visible = isOriginalOn;
+
+            // Background audios
+            if (isPolishOn)
+            {
+                if (!environmentAudio.Playing)
+                    environmentAudio.Play();
+
+                if (!backgroundAudio.Playing)
+                    backgroundAudio.Play();
+                
+                var tween = GetTree().CreateTween();
+                tween.TweenProperty(environmentAudio, "volume_db", -20, 0.5f);
+
+                var tween2 = GetTree().CreateTween();
+                tween2.TweenProperty(backgroundAudio, "volume_db", 0, 0.5f);
+            }
+            else
+            {
+                var tween = GetTree().CreateTween();
+                tween.TweenProperty(environmentAudio, "volume_db", -40, 0.5f);
+                tween.TweenCallback(Callable.From(() => environmentAudio.Stop()));
+
+                var tween2 = GetTree().CreateTween();
+                tween2.TweenProperty(backgroundAudio, "volume_db", -40, 0.5f);
+                tween.TweenCallback(Callable.From(() => backgroundAudio.Stop()));
+            }
         }
     }
 
