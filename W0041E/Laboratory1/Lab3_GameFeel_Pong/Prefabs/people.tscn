@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2u7vbbtuqk1c"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6ed2g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yaf5q"]
+size = Vector3(0.2, 0.4, 0.6)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ljug5"]
+top_radius = 0.1
+bottom_radius = 0.8
+height = 0.4
+
+[sub_resource type="Animation" id="Animation_6ed2g"]
+resource_name = "people_walk_anim"
+length = 42.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PeoplePivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 11.8, 29.8, 42),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(5, 0, 0), Vector3(-5, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PeoplePivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 11.8, 12, 29.733334, 29.933332),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 3.1415927, 0), Vector3(0, 3.1415927, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yaf5q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PeoplePivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PeoplePivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ljug5"]
+_data = {
+&"RESET": SubResource("Animation_yaf5q"),
+&"people_walk_anim": SubResource("Animation_6ed2g")
+}
+
+[node name="People" type="Node3D"]
+
+[node name="PeoplePivot" type="Node3D" parent="."]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
+
+[node name="people_mesh" type="MeshInstance3D" parent="PeoplePivot"]
+mesh = SubResource("CapsuleMesh_6ed2g")
+skeleton = NodePath("../..")
+
+[node name="people_eyes" type="MeshInstance3D" parent="PeoplePivot/people_mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44196296, 0.3624674, 0)
+mesh = SubResource("BoxMesh_yaf5q")
+
+[node name="people_hat" type="MeshInstance3D" parent="PeoplePivot/people_mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93672174, 0)
+mesh = SubResource("CylinderMesh_ljug5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ljug5")
+}
+autoplay = "people_walk_anim"
