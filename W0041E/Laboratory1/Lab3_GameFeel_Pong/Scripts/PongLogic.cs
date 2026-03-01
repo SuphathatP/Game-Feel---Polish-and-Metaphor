@@ -62,6 +62,7 @@ public partial class PongLogic : Node
     private AudioStreamPlayer3D backgroundAudio;
     private AudioStreamPlayer3D leftBoatMovingAudio;
     private AudioStreamPlayer3D rightBoatMovingAudio;
+    private AudioStreamPlayer3D ballSpawnAudio;
 
     public override void _Ready()
     {
@@ -85,6 +86,8 @@ public partial class PongLogic : Node
 
         leftBoatMovingAudio = leftPaddle.GetNode<AudioStreamPlayer3D>("LeftPaddleHD/BoatLeft/BoatMovingAudio");
         rightBoatMovingAudio = rightPaddle.GetNode<AudioStreamPlayer3D>("RightPaddleHD/BoatRight/BoatMovingAudio");
+
+        ballSpawnAudio = ball.GetNode<AudioStreamPlayer3D>("BallSpawnAudio");
     }
 
     public override void _Process(double delta)
@@ -108,8 +111,6 @@ public partial class PongLogic : Node
         {
             ballVelocity.Z *= -1;
         }
-
-
     }
 
     public void SetPolishGFXTransform()
@@ -135,7 +136,7 @@ public partial class PongLogic : Node
         rightPaddleVerticalVelocity = (rightPaddlePosition - rightPaddle.Position).Length();
         rightPaddle.Position = rightPaddlePosition;
 
-        // LEFT PADDLE SOUND
+        // Left paddle audio
         if (leftPaddleVerticalVelocity > 0.001f && isPolishOn)
         {
             if (!leftBoatMovingAudio.Playing)
@@ -154,7 +155,7 @@ public partial class PongLogic : Node
             }
         }
 
-        // RIGHT PADDLE SOUND
+        // Right paddle audio
         if (rightPaddleVerticalVelocity > 0.001f && isPolishOn)
         {
             if (!rightBoatMovingAudio.Playing)
@@ -189,6 +190,11 @@ public partial class PongLogic : Node
     public void LooseMatch()
     {
         InitMatch();
+
+        if (isPolishOn)
+        {
+            ballSpawnAudio.Play();
+        }
     }
 
     // Handle joystick input for paddles (Same joystick)

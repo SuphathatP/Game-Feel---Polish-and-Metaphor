@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://bxsjqwurlq4a8"]
+[gd_scene load_steps=24 format=3 uid="uid://bxsjqwurlq4a8"]
 
 [ext_resource type="Material" uid="uid://c3b0ilgfnsvyi" path="res://shared/materials/Mat_Black.tres" id="1_y0gck"]
 [ext_resource type="Script" uid="uid://vspf4tlaj8t6" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Scripts/PongLogic.cs" id="2_0f0sq"]
 [ext_resource type="PackedScene" uid="uid://dtmxbdwt4vsuh" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/simple_coconut.tscn" id="3_2c6hd"]
 [ext_resource type="AudioStream" uid="uid://cx0c1unpxiep1" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Audios/environment.mp3" id="3_8pk5x"]
 [ext_resource type="PackedScene" uid="uid://cdbpaiqms1wpo" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/watersim.tscn" id="3_yvltx"]
+[ext_resource type="AudioStream" uid="uid://81upnh4t6eqt" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Audios/ballspawn.mp3" id="4_20k3v"]
 [ext_resource type="PackedScene" uid="uid://6hhmstyjjcuo" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/boat.tscn" id="5_2c6hd"]
 [ext_resource type="PackedScene" uid="uid://d0dtytyfnuxfm" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/blocker.tscn" id="6_rsk78"]
 [ext_resource type="AudioStream" uid="uid://buneedhkj80p0" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Audios/background.mp3" id="8_6mv62"]
@@ -144,6 +145,10 @@ skeleton = NodePath("../../..")
 [node name="Simple Coconut" parent="Level/Ball" instance=ExtResource("3_2c6hd")]
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
 
+[node name="BallSpawnAudio" type="AudioStreamPlayer3D" parent="Level/Ball"]
+stream = ExtResource("4_20k3v")
+autoplay = true
+
 [node name="Original" type="Node3D" parent="Level"]
 visible = false
 
@@ -225,10 +230,10 @@ skeleton = NodePath("../../..")
 [node name="Water" parent="BeautyStuff" instance=ExtResource("3_yvltx")]
 
 [node name="Blocker" parent="BeautyStuff" instance=ExtResource("6_rsk78")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3, 0.16, -1.2)
 
 [node name="Blocker2" parent="BeautyStuff" instance=ExtResource("6_rsk78")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 1.2)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.3, 0.16, 1.2)
 
 [node name="EnvironmentAudio" type="AudioStreamPlayer3D" parent="BeautyStuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
@@ -243,27 +248,27 @@ autoplay = true
 parameters/looping = true
 
 [node name="Walkway" type="MeshInstance3D" parent="BeautyStuff"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -1.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -1.7)
 mesh = SubResource("BoxMesh_w5x86")
 
 [node name="Walkway2" type="MeshInstance3D" parent="BeautyStuff"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 1.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 1.7)
 mesh = SubResource("BoxMesh_w5x86")
 
 [node name="People" parent="BeautyStuff" instance=ExtResource("10_w5x86")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -1.3000002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -1.3000002)
 
 [node name="People3" parent="BeautyStuff" instance=ExtResource("10_w5x86")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 0.3, -1.3000002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 0.4, -1.3000002)
 
 [node name="People2" parent="BeautyStuff" instance=ExtResource("10_w5x86")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.5, 0.3, 1.2999997)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.5, 0.4, 1.2999997)
 
 [node name="People5" parent="BeautyStuff" instance=ExtResource("10_w5x86")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.9, 0.3, 1.2999997)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.9, 0.4, 1.2999997)
 
 [node name="People4" parent="BeautyStuff" instance=ExtResource("10_w5x86")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.3, 0.3, -1.6000003)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.3, 0.4, -1.6000003)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 2, 0.8)
