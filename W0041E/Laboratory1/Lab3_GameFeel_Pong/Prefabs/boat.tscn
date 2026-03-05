@@ -1,15 +1,25 @@
-[gd_scene load_steps=11 format=3 uid="uid://6hhmstyjjcuo"]
+[gd_scene load_steps=14 format=3 uid="uid://6hhmstyjjcuo"]
 
 [ext_resource type="PackedScene" uid="uid://bjodqyivmmaxj" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/simple_boat.tscn" id="1_p37hw"]
+[ext_resource type="Material" uid="uid://cjkwijk7kqu2q" path="res://shared/materials/Mat_hat.tres" id="2_o32ms"]
 [ext_resource type="AudioStream" uid="uid://uy71v4b6uph6" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Audios/boathit.mp3" id="2_p37hw"]
 [ext_resource type="AudioStream" uid="uid://bsdtri1kslm7u" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Audios/boatmoving.mp3" id="3_31ncj"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31ncj"]
+albedo_color = Color(0.5935158, 0.15555656, 0.13535652, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_800mo"]
+material = SubResource("StandardMaterial3D_31ncj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xs4nv"]
+albedo_color = Color(0.27387273, 0.27387273, 0.27387273, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_800mo"]
+material = SubResource("StandardMaterial3D_xs4nv")
 size = Vector3(0.2, 0.4, 0.6)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_p37hw"]
+material = ExtResource("2_o32ms")
 top_radius = 0.1
 bottom_radius = 0.8
 height = 0.4

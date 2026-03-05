@@ -1,14 +1,52 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2u7vbbtuqk1c"]
+[gd_scene load_steps=10 format=3 uid="uid://b2u7vbbtuqk1c"]
+
+[ext_resource type="Material" uid="uid://cjkwijk7kqu2q" path="res://shared/materials/Mat_hat.tres" id="1_yaf5q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yaf5q"]
+albedo_color = Color(0.58083636, 0.36024138, 0.1821985, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6ed2g"]
+material = SubResource("StandardMaterial3D_yaf5q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ljug5"]
+albedo_color = Color(0.32172796, 0.32172796, 0.32172796, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_yaf5q"]
+material = SubResource("StandardMaterial3D_ljug5")
 size = Vector3(0.2, 0.4, 0.6)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ljug5"]
+material = ExtResource("1_yaf5q")
 top_radius = 0.1
 bottom_radius = 0.8
 height = 0.4
+
+[sub_resource type="Animation" id="Animation_yaf5q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PeoplePivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PeoplePivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_6ed2g"]
 resource_name = "people_walk_anim"
@@ -37,33 +75,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 3.1415927, 0), Vector3(0, 3.1415927, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_yaf5q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PeoplePivot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PeoplePivot:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ljug5"]

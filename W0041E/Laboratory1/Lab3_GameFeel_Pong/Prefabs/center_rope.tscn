@@ -1,0 +1,125 @@
+[gd_scene load_steps=12 format=3 uid="uid://ctjq1fcwymdac"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n178i"]
+albedo_color = Color(0.2831792, 0.18029013, 0.059484005, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vk0of"]
+material = SubResource("StandardMaterial3D_n178i")
+size = Vector3(0.01, 0.01, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vk0of"]
+albedo_color = Color(0, 0, 0.8509804, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n178i"]
+material = SubResource("StandardMaterial3D_vk0of")
+size = Vector3(0.01, 0.1, 0.06)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbrqi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_62nb4"]
+material = SubResource("StandardMaterial3D_qbrqi")
+size = Vector3(0.01, 0.1, 0.06)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62nb4"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_60hne"]
+material = SubResource("StandardMaterial3D_62nb4")
+size = Vector3(0.01, 0.1, 0.06)
+
+[sub_resource type="Animation" id="Animation_vk0of"]
+resource_name = "rope_anim"
+length = 9.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.5, 3, 6, 6.5, 7, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.6981317), Vector3(0, 0, 0.5235988), Vector3(0, 0, 0.6981317), Vector3(0, 0, -0.69813174), Vector3(0, 0, -0.5235988), Vector3(0, 0, -0.6981317), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n178i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qbrqi"]
+_data = {
+&"RESET": SubResource("Animation_n178i"),
+&"rope_anim": SubResource("Animation_vk0of")
+}
+
+[node name="CenterRope" type="Node3D"]
+
+[node name="RopePivot" type="Node3D" parent="."]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="rope_mesh" type="MeshInstance3D" parent="RopePivot"]
+mesh = SubResource("BoxMesh_vk0of")
+skeleton = NodePath("../..")
+
+[node name="blueflag_mesh" type="MeshInstance3D" parent="RopePivot"]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, -0.04999999, 0)
+mesh = SubResource("BoxMesh_n178i")
+
+[node name="blueflag_mesh2" type="MeshInstance3D" parent="RopePivot"]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 1, 0, -0.049999982, -0.2)
+mesh = SubResource("BoxMesh_n178i")
+
+[node name="blueflag_mesh3" type="MeshInstance3D" parent="RopePivot"]
+transform = Transform3D(0.9999997, 0, 0, 0, 0.9999997, 0, 0, 0, 1, 0, -0.04999998, 0.2)
+mesh = SubResource("BoxMesh_n178i")
+
+[node name="whiteflag_mesh3" type="MeshInstance3D" parent="RopePivot"]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 1, 0, -0.04999998, 0.4)
+mesh = SubResource("BoxMesh_62nb4")
+
+[node name="whiteflag_mesh5" type="MeshInstance3D" parent="RopePivot"]
+transform = Transform3D(0.9999998, -2.9802322e-08, 0, 2.9802322e-08, 0.9999998, 0, 0, 0, 1, 0, -0.049999982, 0.6)
+mesh = SubResource("BoxMesh_62nb4")
+
+[node name="whiteflag_mesh4" type="MeshInstance3D" parent="RopePivot"]
+transform = Transform3D(0.9999997, 0, 0, 0, 0.9999997, 0, 0, 0, 1, 0, -0.049999975, -0.4)
+mesh = SubResource("BoxMesh_62nb4")
+
+[node name="whiteflag_mesh6" type="MeshInstance3D" parent="RopePivot"]
+transform = Transform3D(0.99999976, -2.9802322e-08, 0, 2.9802322e-08, 0.99999976, 0, 0, 0, 1, 0, -0.04999998, -0.6)
+mesh = SubResource("BoxMesh_62nb4")
+
+[node name="redflag_mesh" type="MeshInstance3D" parent="RopePivot"]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, -0.049999986, 0.8)
+mesh = SubResource("BoxMesh_60hne")
+
+[node name="redflag_mesh2" type="MeshInstance3D" parent="RopePivot"]
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 1, 0, -0.049999982, 1)
+mesh = SubResource("BoxMesh_60hne")
+
+[node name="redflag_mesh3" type="MeshInstance3D" parent="RopePivot"]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 1, 0, -0.04999998, -0.8000001)
+mesh = SubResource("BoxMesh_60hne")
+
+[node name="redflag_mesh4" type="MeshInstance3D" parent="RopePivot"]
+transform = Transform3D(0.9999997, 0, 0, 0, 0.9999997, 0, 0, 0, 1, 0, -0.049999975, -1.0000001)
+mesh = SubResource("BoxMesh_60hne")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RopePivot"]
+libraries = {
+&"": SubResource("AnimationLibrary_qbrqi")
+}
+autoplay = "rope_anim"

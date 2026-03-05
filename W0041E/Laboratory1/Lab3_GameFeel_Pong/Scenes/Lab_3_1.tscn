@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bxsjqwurlq4a8"]
+[gd_scene load_steps=25 format=3 uid="uid://bxsjqwurlq4a8"]
 
 [ext_resource type="Material" uid="uid://c3b0ilgfnsvyi" path="res://shared/materials/Mat_Black.tres" id="1_y0gck"]
 [ext_resource type="Script" uid="uid://vspf4tlaj8t6" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Scripts/PongLogic.cs" id="2_0f0sq"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://buneedhkj80p0" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Audios/background.mp3" id="8_6mv62"]
 [ext_resource type="Material" uid="uid://d147pd6ixwbl2" path="res://shared/materials/Mat_blocker.tres" id="9_dr5c1"]
 [ext_resource type="PackedScene" uid="uid://b2u7vbbtuqk1c" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/people.tscn" id="10_w5x86"]
+[ext_resource type="PackedScene" uid="uid://ctjq1fcwymdac" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/center_rope.tscn" id="12_f4sew"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2c6hd"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -269,6 +270,9 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.9,
 
 [node name="People4" parent="BeautyStuff" instance=ExtResource("10_w5x86")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.3, 0.4, -1.6000003)
+
+[node name="CenterRope" parent="BeautyStuff" instance=ExtResource("12_f4sew")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 2, 0.8)
