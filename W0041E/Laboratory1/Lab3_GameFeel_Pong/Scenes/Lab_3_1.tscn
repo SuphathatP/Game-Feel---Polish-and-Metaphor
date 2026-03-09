@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bxsjqwurlq4a8"]
+[gd_scene load_steps=26 format=3 uid="uid://bxsjqwurlq4a8"]
 
 [ext_resource type="Material" uid="uid://c3b0ilgfnsvyi" path="res://shared/materials/Mat_Black.tres" id="1_y0gck"]
 [ext_resource type="Script" uid="uid://vspf4tlaj8t6" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Scripts/PongLogic.cs" id="2_0f0sq"]
@@ -55,6 +55,42 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 2, 0.8)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:fov")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/FadeRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/FadeRect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_rsk78"]
 resource_name = "camera_shake_anim"
@@ -72,10 +108,50 @@ tracks/0/keys = {
 "values": [Vector3(0, 2, 0.8), Vector3(-0.02, 2, 0.8), Vector3(0.02, 2, 0.8), Vector3(0, 2, 0.8)]
 }
 
+[sub_resource type="Animation" id="Animation_f4sew"]
+resource_name = "start_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [75.0, 80.0, 75.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/FadeRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/FadeRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.01, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6mv62"]
 _data = {
 &"RESET": SubResource("Animation_8pk5x"),
-&"camera_shake_anim": SubResource("Animation_rsk78")
+&"camera_shake_anim": SubResource("Animation_rsk78"),
+&"start_anim": SubResource("Animation_f4sew")
 }
 
 [node name="Lab31" type="Node3D"]
@@ -283,6 +359,15 @@ size = 3.0
 libraries = {
 &"": SubResource("AnimationLibrary_6mv62")
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
+
+[node name="FadeRect" type="ColorRect" parent="Camera3D/CanvasLayer"]
+visible = false
+offset_right = 45387.42
+offset_bottom = 40974.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [editable path="Level/PaddleController/LeftPaddle/LeftPaddleHD/BoatLeft"]
 [editable path="Level/PaddleController/RightPaddle/RightPaddleHD/BoatRight"]

@@ -50,6 +50,10 @@ public partial class PongLogic : Node
     private float leftPaddleVerticalVelocity = 0;
     private float rightPaddleVerticalVelocity = 0;
 
+    private Vector3 coconutBaseScale;
+    private Vector3 ballTargetScale = Vector3.One;
+    private float ballStretchSpeed = 12f; 
+
     // Animantions
     private AnimationPlayer cameraHDAnim;
     private AnimationPlayer boatLeftAnim;
@@ -66,6 +70,7 @@ public partial class PongLogic : Node
 
     public override void _Ready()
     {
+        coconutBaseScale = coconut.Scale;
         InitMatch();
 
         // Animations
@@ -96,6 +101,7 @@ public partial class PongLogic : Node
         PaddleMovement((float)delta);
         BallMovement((float)delta);
         CheckPaddleCollision();
+        coconut.Scale = coconut.Scale.Lerp(coconutBaseScale * ballTargetScale, (float)delta * ballStretchSpeed);
         CheckForScore();
         SetPolishGFXTransform();
         TogglePolish();
@@ -194,6 +200,7 @@ public partial class PongLogic : Node
         if (isPolishOn)
         {
             ballSpawnAudio.Play();
+            cameraHDAnim.Play("start_anim");
         }
     }
 
@@ -267,10 +274,24 @@ private void CheckPaddleCollision()
 			if(leftPaddleVerticalVelocity > 0.07f && targetPaddle == leftPaddle)
             {
 				ballVelocity = ballVelocity * 2.0f;
+
+                ballTargetScale = new Vector3(2f, 0.7f, 1f);
+
+                GetTree().CreateTimer(0.1f).Timeout += () =>
+                {
+                    ballTargetScale = Vector3.One;
+                };
 			}
             if(rightPaddleVerticalVelocity > 0.07f && targetPaddle == rightPaddle)
             {
                 ballVelocity = ballVelocity * 2.0f;
+
+                ballTargetScale = new Vector3(2f, 0.7f, 1f);
+
+                GetTree().CreateTimer(0.1f).Timeout += () =>
+                {
+                    ballTargetScale = Vector3.One;
+                };
             }
 
             if (ball.GlobalPosition.X < targetPaddle.GlobalPosition.X)
@@ -357,5 +378,4 @@ private void CheckPaddleCollision()
             boatRightAnim.Play("boat_animation", customBlend: blendAnimSpeed);
         }   
     }
-
 }
