@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://bm21rsknirs45"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cd6xi"]
+albedo_color = Color(3.7902967e-07, 0.3151614, 0.06611726, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uy4w1"]
+material = SubResource("StandardMaterial3D_cd6xi")
+top_radius = 0.08
+bottom_radius = 0.08
+height = 0.008
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cj20d"]
+albedo_color = Color(0.16992253, 0.19689974, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yfnrq"]
+material = SubResource("StandardMaterial3D_cj20d")
+top_radius = 0.006
+bottom_radius = 0.006
+height = 6.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlxaw"]
+albedo_color = Color(0.9999997, 0.3947858, 0.99678725, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7k2eo"]
+material = SubResource("StandardMaterial3D_hlxaw")
+top_radius = 0.04
+bottom_radius = 0.04
+height = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lrret"]
+albedo_color = Color(1, 0.75686276, 0.45490196, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_76t1c"]
+material = SubResource("StandardMaterial3D_lrret")
+top_radius = 0.03
+bottom_radius = 0.02
+height = 0.01
+
+[node name="LotusFlower" type="Node3D"]
+
+[node name="LotusPivot" type="Node3D" parent="."]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="LotusLeaf" type="MeshInstance3D" parent="LotusPivot"]
+mesh = SubResource("CylinderMesh_uy4w1")
+skeleton = NodePath("../..")
+
+[node name="LotusTree" type="MeshInstance3D" parent="LotusPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+visible = false
+mesh = SubResource("CylinderMesh_yfnrq")
+skeleton = NodePath("../..")
+
+[node name="LotusFlower" type="Node3D" parent="LotusPivot"]
+
+[node name="LotusFlowerBottom" type="MeshInstance3D" parent="LotusPivot/LotusFlower"]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0.009999999, 0)
+mesh = SubResource("CylinderMesh_7k2eo")
+skeleton = NodePath("../..")
+
+[node name="LotusFlowerTop" type="MeshInstance3D" parent="LotusPivot/LotusFlower"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("CylinderMesh_76t1c")

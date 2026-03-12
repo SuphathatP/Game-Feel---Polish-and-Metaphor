@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2u7vbbtuqk1c"]
+[gd_scene load_steps=11 format=3 uid="uid://b2u7vbbtuqk1c"]
 
 [ext_resource type="Material" uid="uid://cjkwijk7kqu2q" path="res://shared/materials/Mat_hat.tres" id="1_yaf5q"]
+[ext_resource type="PackedScene" uid="uid://d01v64khdukw6" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Prefabs/people_stuff.tscn" id="2_ljug5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yaf5q"]
 albedo_color = Color(0.58083636, 0.36024138, 0.1821985, 1)
@@ -99,6 +100,10 @@ mesh = SubResource("BoxMesh_yaf5q")
 [node name="people_hat" type="MeshInstance3D" parent="PeoplePivot/people_mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93672174, 0)
 mesh = SubResource("CylinderMesh_ljug5")
+
+[node name="PeopleStuff" parent="PeoplePivot/people_mesh" instance=ExtResource("2_ljug5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.5)
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://be1ivbc7s73nj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cd6xi"]
+albedo_color = Color(3.7902967e-07, 0.3151614, 0.06611726, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cd6xi"]
+material = SubResource("StandardMaterial3D_cd6xi")
+top_radius = 0.08
+bottom_radius = 0.08
+height = 0.008
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cj20d"]
+albedo_color = Color(0.16992253, 0.19689974, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hlxaw"]
+material = SubResource("StandardMaterial3D_cj20d")
+top_radius = 0.006
+bottom_radius = 0.006
+height = 6.0
+
+[node name="Lotus" type="Node3D"]
+
+[node name="LotusPivot" type="Node3D" parent="."]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="LotusLeaf" type="MeshInstance3D" parent="LotusPivot"]
+mesh = SubResource("CylinderMesh_cd6xi")
+skeleton = NodePath("../..")
+
+[node name="LotusTree" type="MeshInstance3D" parent="LotusPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+visible = false
+mesh = SubResource("CylinderMesh_hlxaw")
+skeleton = NodePath("../..")

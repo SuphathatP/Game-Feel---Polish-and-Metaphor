@@ -1,0 +1,244 @@
+[gd_scene load_steps=11 format=3 uid="uid://c31mf3g36hqk5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4brom"]
+albedo_color = Color(0.16889778, 0.15933314, 0.11783972, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4brom"]
+material = SubResource("StandardMaterial3D_4brom")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbxoj"]
+albedo_color = Color(0.19590259, 0.237964, 0.12160995, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lbxoj"]
+material = SubResource("StandardMaterial3D_lbxoj")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_whhnb"]
+albedo_color = Color(0.27704674, 0.17715892, 0.1433498, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_whhnb"]
+material = SubResource("StandardMaterial3D_whhnb")
+
+[sub_resource type="Animation" id="Animation_4brom"]
+resource_name = "fin_anim"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BigFishPivot/FinPivot/leftfin_mesh:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5707964, -0.7853982, 0), Vector3(1.5707964, -0.43633232, 0), Vector3(1.5707964, -0.7853982, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BigFishPivot/FinPivot/rightfin_mesh:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5707964, 0.7853982, 0), Vector3(1.5707964, 0.43633232, 0), Vector3(1.5707964, 0.7853982, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BigFishPivot/BottomFinPivot/bottomfin_mesh:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.34906584, 0), Vector3(0, 0.34906584, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BigFishPivot/FinPivot/leftfin_mesh:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.6), Vector3(0, 0, 0.5), Vector3(0, 0, 0.6)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BigFishPivot/FinPivot/rightfin_mesh:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.6), Vector3(0, 0, -0.5), Vector3(0, 0, -0.6)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BigFishPivot/BottomFinPivot/bottomfin_mesh:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.1), Vector3(0, 0, -0.1), Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BigFishPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.17453292, 0), Vector3(0, -0.17453292, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lbxoj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BigFishPivot/FinPivot/leftfin_mesh:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5707964, -0.7853982, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BigFishPivot/FinPivot/rightfin_mesh:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5707964, 0.7853982, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BigFishPivot/BottomFinPivot/bottomfin_mesh:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BigFishPivot/FinPivot/leftfin_mesh:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.6)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BigFishPivot/FinPivot/rightfin_mesh:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.6)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BigFishPivot/BottomFinPivot/bottomfin_mesh:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BigFishPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_whhnb"]
+resource_name = "move_animation"
+length = 12.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_whhnb"]
+_data = {
+&"RESET": SubResource("Animation_lbxoj"),
+&"fin_anim": SubResource("Animation_4brom"),
+&"move_animation": SubResource("Animation_whhnb")
+}
+
+[node name="BigFish" type="Node3D"]
+
+[node name="BigFishPivot" type="Node3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="fish_mesh" type="MeshInstance3D" parent="BigFishPivot"]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 0, 0)
+mesh = SubResource("SphereMesh_4brom")
+
+[node name="FinPivot" type="Node3D" parent="BigFishPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="leftfin_mesh" type="MeshInstance3D" parent="BigFishPivot/FinPivot"]
+transform = Transform3D(1.4142134, -0.7071067, 3.090862e-08, 0, -4.3711385e-08, -1, 1.4142134, 0.7071067, -3.090862e-08, 0, 0, 0.6)
+mesh = SubResource("CylinderMesh_lbxoj")
+
+[node name="rightfin_mesh" type="MeshInstance3D" parent="BigFishPivot/FinPivot"]
+transform = Transform3D(1.4142134, 0.7071067, -3.090862e-08, 0, -4.3711385e-08, -1, -1.4142134, 0.7071067, -3.090862e-08, 0, 0, -0.6)
+mesh = SubResource("CylinderMesh_lbxoj")
+
+[node name="BottomFinPivot" type="Node3D" parent="BigFishPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 0, 0)
+
+[node name="bottomfin_mesh" type="MeshInstance3D" parent="BigFishPivot/BottomFinPivot"]
+transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 0.20000002, 0, 0, 0)
+mesh = SubResource("SphereMesh_whhnb")
+skeleton = NodePath("../../FinPivot")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_whhnb")
+}
+autoplay = "fin_anim"

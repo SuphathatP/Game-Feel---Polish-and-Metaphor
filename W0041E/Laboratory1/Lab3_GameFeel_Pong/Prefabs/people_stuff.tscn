@@ -1,0 +1,150 @@
+[gd_scene load_steps=10 format=3 uid="uid://d01v64khdukw6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldvan"]
+albedo_color = Color(0.21454316, 0.15270767, 0.074528195, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cr56p"]
+material = SubResource("StandardMaterial3D_ldvan")
+size = Vector3(0.5, 0.008, 0.008)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvt7v"]
+albedo_color = Color(0.15380555, 0.10724994, 1.2032688e-08, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wvt7v"]
+material = SubResource("StandardMaterial3D_wvt7v")
+size = Vector3(0.008, 0.12, 0.008)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr56p"]
+albedo_color = Color(0.5464928, 0.39471385, 3.85046e-07, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cr56p"]
+material = SubResource("StandardMaterial3D_cr56p")
+top_radius = 0.1
+bottom_radius = 0.06
+height = 0.08
+
+[sub_resource type="Animation" id="Animation_cr56p"]
+resource_name = "move_anim"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/LeftRope:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2, 2.5, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.17453292, 0, 0), Vector3(-0.17453292, 0, 0), Vector3(0, 0, 0), Vector3(0.34906584, 0, 0), Vector3(-0.34906584, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/RightRope:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2, 2.5, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.34906584, 0, 0), Vector3(0.34906584, 0, 0), Vector3(0, 0, 0), Vector3(-0.17453292, 0, 0), Vector3(0.17453292, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wvt7v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/LeftRope:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/RightRope:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ldvan"]
+_data = {
+&"RESET": SubResource("Animation_wvt7v"),
+&"move_anim": SubResource("Animation_cr56p")
+}
+
+[node name="PeopleStuff" type="Node3D"]
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="handle_mesh" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_cr56p")
+
+[node name="LeftRope" type="Node3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, -0.18, 0, 0)
+
+[node name="left_rope_mesh" type="MeshInstance3D" parent="Pivot/LeftRope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
+mesh = SubResource("BoxMesh_wvt7v")
+skeleton = NodePath("../..")
+
+[node name="left_basket_mesh" type="MeshInstance3D" parent="Pivot/LeftRope"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.14333332, 0)
+mesh = SubResource("CylinderMesh_cr56p")
+skeleton = NodePath("../..")
+
+[node name="RightRope" type="Node3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0, 0)
+
+[node name="right_rope_mesh" type="MeshInstance3D" parent="Pivot/RightRope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
+mesh = SubResource("BoxMesh_wvt7v")
+skeleton = NodePath("../..")
+
+[node name="right_basket_mesh" type="MeshInstance3D" parent="Pivot/RightRope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14333333, 0)
+mesh = SubResource("CylinderMesh_cr56p")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ldvan")
+}
+autoplay = "move_anim"
