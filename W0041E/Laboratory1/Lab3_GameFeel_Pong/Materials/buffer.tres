@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://esctl2pfmgtw"]
+
+[ext_resource type="Shader" uid="uid://v3wvmylpqv6y" path="res://shared/shaders/buffer.tres" id="1_aw4h8"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fn5i0"]
+viewport_path = NodePath("Simulation")
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_aw4h8")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_fn5i0")

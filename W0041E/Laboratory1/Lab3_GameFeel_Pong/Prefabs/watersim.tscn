@@ -1,18 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://cdbpaiqms1wpo"]
+[gd_scene format=3 uid="uid://cdbpaiqms1wpo"]
 
 [ext_resource type="Script" uid="uid://hy5q0dv7wlel" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Scripts/Water.cs" id="1_l66fi"]
 [ext_resource type="Shader" uid="uid://ble0dh7pvottq" path="res://shared/shaders/simulation.gdshader" id="1_wj5qs"]
-[ext_resource type="Shader" uid="uid://c7d7kiigmb7le" path="res://shared/shaders/water.tres" id="2_7fen6"]
-[ext_resource type="Shader" uid="uid://v3wvmylpqv6y" path="res://shared/shaders/buffer.tres" id="2_dfset"]
+[ext_resource type="Material" uid="uid://esctl2pfmgtw" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Materials/buffer.tres" id="2_l66fi"]
 [ext_resource type="Material" uid="uid://b13ap22ai1ii5" path="res://shared/materials/Mat_Base_Water.tres" id="4_l66fi"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_fn5i0"]
-viewport_path = NodePath("Simulation")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6vesp"]
-resource_local_to_scene = true
-shader = ExtResource("2_dfset")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_fn5i0")
+[ext_resource type="Material" uid="uid://eic8g7n1iggg" path="res://W0041E/Laboratory1/Lab3_GameFeel_Pong/Materials/water.tres" id="5_yds3k"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_2psol"]
 viewport_path = NodePath("Collision")
@@ -38,40 +30,22 @@ size = Vector2(50, 50)
 subdivide_width = 500
 subdivide_depth = 500
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_m1c3a"]
-viewport_path = NodePath("Simulation")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_ceg2r"]
-viewport_path = NodePath("Simulation")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f7voy"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("2_7fen6")
-shader_parameter/simulation2 = SubResource("ViewportTexture_ceg2r")
-shader_parameter/amplitude = 0.5
-shader_parameter/refraction_strength = 0.1
-shader_parameter/simulation = SubResource("ViewportTexture_m1c3a")
-shader_parameter/deep_water = Color(0.23607534, 0.33166876, 0.103397585, 0.94509804)
-shader_parameter/shallow_water = Color(0.2834836, 0.3978092, 0.12798801, 0.94509804)
-shader_parameter/murkiness = 0.407
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_ntba4"]
-material = SubResource("ShaderMaterial_f7voy")
+material = ExtResource("5_yds3k")
 size = Vector2(10.1, 10.1)
 subdivide_width = 500
 subdivide_depth = 500
 
-[node name="Water" type="Node3D"]
+[node name="Water" type="Node3D" unique_id=183845443]
 script = ExtResource("1_l66fi")
 
-[node name="SimulationBuffer" type="SubViewport" parent="."]
+[node name="SimulationBuffer" type="SubViewport" parent="." unique_id=1003049973]
 size = Vector2i(514, 512)
 render_target_clear_mode = 2
 render_target_update_mode = 4
 
-[node name="ColorRect" type="ColorRect" parent="SimulationBuffer"]
-material = SubResource("ShaderMaterial_6vesp")
+[node name="ColorRect" type="ColorRect" parent="SimulationBuffer" unique_id=1310935767]
+material = ExtResource("2_l66fi")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -79,12 +53,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Simulation" type="SubViewport" parent="."]
+[node name="Simulation" type="SubViewport" parent="." unique_id=503654817]
 size = Vector2i(514, 512)
 render_target_clear_mode = 2
 render_target_update_mode = 4
 
-[node name="ColorRect" type="ColorRect" parent="Simulation"]
+[node name="ColorRect" type="ColorRect" parent="Simulation" unique_id=1954904046]
 material = SubResource("ShaderMaterial_cg4ft")
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,11 +67,11 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Collision" type="SubViewport" parent="."]
+[node name="Collision" type="SubViewport" parent="." unique_id=874720281]
 size = Vector2i(514, 512)
 render_target_update_mode = 4
 
-[node name="WaterCam" type="Camera3D" parent="Collision"]
+[node name="WaterCam" type="Camera3D" parent="Collision" unique_id=1032286349]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -5, 0)
 keep_aspect = 0
 cull_mask = 524288
@@ -108,19 +82,19 @@ size = 10.1
 near = 0.001
 far = 5.0
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1720972844]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6945, 0)
 visible = false
 size = Vector3(12, 5, 12)
 material = ExtResource("4_l66fi")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D" unique_id=1109328083]
 operation = 2
 size = Vector3(10, 8, 10)
 
-[node name="PoolFloor" type="MeshInstance3D" parent="."]
+[node name="PoolFloor" type="MeshInstance3D" parent="." unique_id=1244161206]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 mesh = SubResource("PlaneMesh_psqb2")
 
-[node name="Water" type="MeshInstance3D" parent="."]
+[node name="Water" type="MeshInstance3D" parent="." unique_id=1004550105]
 mesh = SubResource("PlaneMesh_ntba4")

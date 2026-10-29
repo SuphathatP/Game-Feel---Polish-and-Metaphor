@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://eic8g7n1iggg"]
+
+[ext_resource type="Shader" uid="uid://c7d7kiigmb7le" path="res://shared/shaders/water.tres" id="1_7ykcc"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_m1c3a"]
+viewport_path = NodePath("Simulation")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ceg2r"]
+viewport_path = NodePath("Simulation")
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_7ykcc")
+shader_parameter/simulation2 = SubResource("ViewportTexture_ceg2r")
+shader_parameter/amplitude = 0.5
+shader_parameter/refraction_strength = 0.1
+shader_parameter/simulation = SubResource("ViewportTexture_m1c3a")
+shader_parameter/deep_water = Color(0.23607534, 0.33166876, 0.103397585, 0.94509804)
+shader_parameter/shallow_water = Color(0.2834836, 0.3978092, 0.12798801, 0.94509804)
+shader_parameter/murkiness = 0.407
